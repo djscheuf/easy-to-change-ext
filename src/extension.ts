@@ -8,14 +8,8 @@ export function activate(context: vscode.ExtensionContext) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "easy-to-change" is now active!');
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('easy-to-change.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from easy-to-change!');
+	let disposable = vscode.workspace.onWillSaveTextDocument(()=>{
+		vscode.window.showInformationMessage('Easy to change?');
 	});
 
 	context.subscriptions.push(disposable);
